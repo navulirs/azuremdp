@@ -34,5 +34,5 @@ steps:
   displayName: 'Twine Authenticate'
 
 - script: |
-    python -m twine upload -r test-mdp/sr-mdp-demo --config-file $(PYPIRC_PATH) dist/*.whl
+    python -m twine upload -r sr-mdp-demo --config-file $(PYPIRC_PATH) dist/*.whl
   displayName: 'Upload to feed'
