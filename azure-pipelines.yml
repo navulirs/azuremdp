@@ -25,6 +25,10 @@ steps:
   displayName: 'Install build and twine'
 
 - script: |
+    echo $(python setup.py --version).$(Build.BuildId)-$(python.version)' > version.py
+  displayName: 'Setup distribution version'
+
+- script: |
     python -m build -w
   displayName: 'Python build'
 
