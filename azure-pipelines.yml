@@ -30,11 +30,11 @@ steps:
 
 - task: TwineAuthenticate@1
   inputs:
-    artifactFeed: test-mdp/pipit-feed               ## For an organization-scoped feed, use: artifactFeed: <FEED_NAME>
+    artifactFeed: test-mdp/sr-mdp-demo               ## For an organization-scoped feed, use: artifactFeed: <FEED_NAME>
   displayName: 'Twine Authenticate'
 
 - script: |
-    python -m twine upload -r pipit-feed --config-file $(PYPIRC_PATH) dist/*.whl
+    python -m twine upload -r sr-mdp-demo --config-file $(PYPIRC_PATH) dist/*.whl
   displayName: 'Upload to feed'
 
 
