@@ -17,10 +17,10 @@ variables:
 
   # # Agent VM image name
   # vmImageName: 'ubuntu-latest'
-  pool:
-    name: mdp-pool1
-    demands:
-    - ImageOverride -equals ubuntu-24.04
+pool:
+  name: mdp-pool1
+  demands:
+  - ImageOverride -equals ubuntu-24.04
 
 stages:
 - stage: Build
