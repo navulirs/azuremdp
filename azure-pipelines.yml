@@ -10,11 +10,33 @@ pool:
   demands:
   - ImageOverride -equals ubuntu-24.04
 
+strategy:
+  matrix:
+    Python310:
+      python.version: '3.10'
+    Python311:
+      python.version: '3.11'
+    Python312:
+      python.version: '3.12'
+
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: UsePythonVersion@0
+  displayName: 'Use Python 3.x'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    pip install build
+    pip install twine
+  displayName: 'Install build and twine'
+
+- script: |
+    python -m build -w
+  displayName: 'Python build'
+
+- task: TwineAuthenticate@1
+  inputs:
+    artifactFeed: test-mdp/sr-mdp-demo               ## For an organization-scoped feed, use: artifactFeed: <FEED_NAME>
+  displayName: 'Twine Authenticate'
+
+- script: |
+    python -m twine upload -r sr-mdp-demo --config-file $(PYPIRC_PATH) dist/*.whl
+  displayName: 'Upload to feed'
