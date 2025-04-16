@@ -6,6 +6,7 @@
 trigger: none
 
 pool:
+  name: mdp-pool1
   vmImage: ubuntu-latest
 
 steps:
