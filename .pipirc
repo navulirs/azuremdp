@@ -1,6 +1,6 @@
 [distutils]
 Index-servers =
-  pipit-feed
+  sr-mdp-demo
 
-[pipit-feed]
-Repository = https://pkgs.dev.azure.com/sr-mdp-demo/test-mdp/_packaging/pipit-feed/pypi/upload/
+[sr-mdp-demo]
+Repository = https://pkgs.dev.azure.com/sr-mdp-demo/_packaging/sr-mdp-demo/pypi/upload/
