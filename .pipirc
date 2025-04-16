@@ -1,0 +1,6 @@
+[distutils]
+Index-servers =
+  sr-mdp-demo
+
+[sr-mdp-demo]
+Repository = https://pkgs.dev.azure.com/sr-mdp-demo/_packaging/sr-mdp-demo/pypi/upload/
