@@ -7,7 +7,7 @@ trigger: none
 
 pool:
   name: mdp-pool1
-  vmImage: ubuntu-latest
+  demand: ubuntu-latest
 
 steps:
 - script: echo Hello, world!
