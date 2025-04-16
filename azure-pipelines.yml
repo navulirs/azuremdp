@@ -30,7 +30,7 @@ steps:
 
 - task: TwineAuthenticate@1
   inputs:
-    artifactFeed: test-mdp/sr-mdp-demo               ## For an organization-scoped feed, use: artifactFeed: <FEED_NAME>
+    artifactFeed: sr-mdp-demo               ## For an organization-scoped feed, use: artifactFeed: <FEED_NAME>
   displayName: 'Twine Authenticate'
 
 - script: |
