@@ -1,5 +1,4 @@
-from mymodule.myclasses import *
-from mymodule.version import __version__
+from version import __version__
 
 setup(
     name="demo-mdp",
