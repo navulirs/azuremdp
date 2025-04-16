@@ -8,7 +8,7 @@ trigger: none
 pool:
   name: mdp-pool1
   demands:
-  - ImageOverride -equals ubuntu-latest
+  - ImageOverride -equals ubuntu-24.04
 
 steps:
 - script: echo Hello, world!
