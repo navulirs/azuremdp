@@ -27,6 +27,7 @@ steps:
 
 - script: |
     python setup.py --version
+    echo $(python setup.py --version).$(Build.BuildId)-$(python.version)
     echo '$(python setup.py --version).$(Build.BuildId)-$(python.version)'
     # python setup.py --version
   displayName: 'Setup distribution version'
