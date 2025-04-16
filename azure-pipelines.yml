@@ -28,7 +28,8 @@ steps:
 - script: |
     python setup.py --version
     echo $(python setup.py --version).$(Build.BuildId)
-    echo "##vso[task setVariable variable=APP_VERSION;]$(python setup.py --version).$(Build.BuildId)"
+    echo "##vso[task.setvariable variable=APP_VERSION;]$(python setup.py --version).$(Build.BuildId)"
+    echo "APP_VERSION=$(APP_VERSION)"
     echo "__version__='$(APP_VERSION)'" > version.py
     # python setup.py --version
   displayName: 'Setup distribution version'
