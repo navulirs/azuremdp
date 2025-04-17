@@ -18,7 +18,7 @@ variables:
   # # Agent VM image name
   # vmImageName: 'ubuntu-latest'
 pool:
-  name: mdp-pool1
+  name: mdp-new-demo-pool
   demands:
   - ImageOverride -equals ubuntu-24.04
 
@@ -29,7 +29,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      name: mdp-pool1
+      name: mdp-new-demo-pool
       demands:
       - ImageOverride -equals ubuntu-24.04
       # vmImage: $(vmImageName)
