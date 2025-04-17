@@ -9,9 +9,9 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'b173af62-f89f-40fd-8adb-62241af8c764'
+  dockerRegistryServiceConnection: '{docker service connection id}'
   imageRepository: 'testpython'
-  containerRegistry: 'mdpdemo.azurecr.io'
+  containerRegistry: '{registry server url}'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
 
