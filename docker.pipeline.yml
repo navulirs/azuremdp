@@ -1,0 +1,65 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger: none
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: '{docker service connection id}'
+  imageRepository: 'testpython'
+  containerRegistry: '{registry server url}'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
+
+  # # Agent VM image name
+  # vmImageName: 'ubuntu-latest'
+pool:
+  name: mdp-new-demo-pool
+  demands:
+  - ImageOverride -equals ubuntu-24.04
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      name: mdp-new-demo-pool
+      demands:
+      - ImageOverride -equals ubuntu-24.04
+      # vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
+        addPipelineData: true # boolean. Add Pipeline metadata to image(s). Default: true.
+        addBaseImageData: true # boolean. Add base image metadata to image(s). Default: true.
+        container: mdp-demo # string. Optional. Use when command = start || command = sto
+
+    # # Docker v2
+# # Build or push Docker images, login or logout, start or stop containers, or run a Docker command.
+# - task: Docker@2
+#   inputs:
+#   # Container Repository
+#     #containerRegistry: # string. Container registry. 
+#     #repository: # string. Optional. Use when command != login && command != logout && command != start && command != stop. Container repository. 
+#   # Commands
+#     command: 'build' # 'buildAndPush' | 'build' | 'push' | 'login' | 'logout' | 'start' | 'stop'. Required. Command. Default: buildAndPush.
+#     Dockerfile: '**/Dockerfile' # string. Required when command = build || command = buildAndPush. Dockerfile. Default: **/Dockerfile.
+#     #buildContext: '**' # string. Optional. Use when command = build || command = buildAndPush. Build context. Default: **.
+#     tags: '$(Build.BuildId)' # string. Optional. Use when command = build || command = push || command = buildAndPush. Tags. Default: $(Build.BuildId).
+#     #arguments: # string. Optional. Use when command != login && command != logout && command != buildAndPush. Arguments. 
+#     addPipelineData: true # boolean. Add Pipeline metadata to image(s). Default: true.
+#     addBaseImageData: true # boolean. Add base image metadata to image(s). Default: true.
+#     container: mdp-demo # string. Optional. Use when command = start || command = stop.
